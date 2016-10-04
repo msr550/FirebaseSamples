@@ -1,5 +1,6 @@
 package com.msr.firebasesamples.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -32,17 +33,33 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-        String email = emailET.getText().toString().trim();
-        String password = passwordET.getText().toString().trim();
-        if (!email.equals("") && !password.equals("")) {
-            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    getToast("Registration Status::" + task.isSuccessful());
+        int id = view.getId();
+        switch (id) {
+            case R.id.registerBtn:
+                String email = emailET.getText().toString().trim();
+                String password = passwordET.getText().toString().trim();
+                if (!email.equals("") && !password.equals("")) {
+                    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                getToast("Registration Status::" + task.isSuccessful());
+                            } else {
+                                getToast(task.getException().getMessage());
+                            }
+
+                        }
+                    });
+                } else {
+                    getToast("All Fields are mandatory");
                 }
-            });
-        } else {
-            getToast("All Fields are mandatory");
+                break;
+            case R.id.forgotPasswordBtn:
+                startActivity(new Intent(this, ResetPasswordActivity.class));
+                break;
+            case R.id.signInBtn:
+                startActivity(new Intent(this, SignInActivity.class));
+                break;
         }
     }
 }

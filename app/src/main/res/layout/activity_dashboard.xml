@@ -21,6 +21,13 @@
         android:padding="30dp">
 
         <Button
+            android:id="@+id/addDataBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="Add Data" />
+
+        <Button
             android:id="@+id/resetPasswordBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

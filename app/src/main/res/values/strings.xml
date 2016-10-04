@@ -8,5 +8,7 @@
     <string name="lbl_forgot_password">Forgot password?</string>
     <string name="signin">Sign In</string>
     <string name="resetPassword">Reset Password</string>
+    <string name="sendData">Send Data</string>
+
 
 </resources>

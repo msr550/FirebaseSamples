@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_data"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    tools:context="com.msr.firebasesamples.activities.AddDataActivity">
+
+    <EditText
+        android:id="@+id/inputET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Enter title"
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/brandET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/inputET"
+        android:gravity="center"
+        android:hint="Brand"
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/quantityET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/brandET"
+        android:gravity="center"
+        android:hint="Quantity"
+        android:inputType="number"
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/AddDataBtn"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/quantityET"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorAccent"
+        android:onClick="onClick"
+        android:text="@string/sendData"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+</RelativeLayout>

@@ -3,7 +3,6 @@ package com.msr.firebasesamples.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -30,7 +29,6 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         ButterKnife.bind(this);
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
-        Log.i("===Email==", "===" + auth.getCurrentUser().getEmail());
     }
 
     @Override
@@ -44,7 +42,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                     if (task.isSuccessful()) {
                         startActivity(new Intent(SignInActivity.this, DashboardActivity.class));
                     } else {
-                        getToast("SignIn Status::" + task.isSuccessful());
+                        getToast(task.getException().getMessage());
                     }
                 }
             });

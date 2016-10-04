@@ -61,6 +61,9 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
+            case R.id.addDataBtn:
+                startActivity(new Intent(this, AddDataActivity.class));
+                break;
             case R.id.resetPasswordBtn:
                 startActivity(new Intent(this, ResetPasswordActivity.class));
                 break;
