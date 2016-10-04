@@ -1,4 +1,4 @@
-package com.rbt.firebasesamples;
+package com.msr.firebasesamples;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

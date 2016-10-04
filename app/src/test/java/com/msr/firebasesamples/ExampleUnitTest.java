@@ -1,4 +1,4 @@
-package com.rbt.firebasesamples;
+package com.msr.firebasesamples;
 
 import org.junit.Test;
 

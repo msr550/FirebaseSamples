@@ -1,4 +1,4 @@
-package com.rbt.firebasesamples;
+package com.msr.firebasesamples;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

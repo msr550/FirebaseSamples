@@ -4,7 +4,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
     defaultConfig {
-        applicationId "com.rbt.firebasesamples"
+        applicationId "com.msr.firebasesamples"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
@@ -27,3 +27,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.0'
     testCompile 'junit:junit:4.12'
 }
+// Add to the bottom of the file
+apply plugin: 'com.google.gms.google-services'
