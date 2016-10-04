@@ -7,4 +7,6 @@
     <string name="btn_forgot_password">Forgot your password?</string>
     <string name="lbl_forgot_password">Forgot password?</string>
     <string name="signin">Sign In</string>
+    <string name="resetPassword">Reset Password</string>
+
 </resources>
