@@ -14,6 +14,9 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.msr.firebasesamples.R;
 import com.msr.firebasesamples.activities.ResetPasswordActivity;
 import com.msr.firebasesamples.activities.SignInActivity;
+import com.msr.firebasesamples.utils.NotificationID;
+
+import java.util.Random;
 
 /**
  * Created by Sandeep on 2/16/2017.
@@ -31,6 +34,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // Log.d(TAG, "==Notification Message Body: " + remoteMessage.getNotification().getBody());
         if (remoteMessage.getData() != null && remoteMessage.getData().size() > 0) {
             Log.d(TAG, "==Message data payload: " + remoteMessage.getData());
+            sendNotification(remoteMessage.getData().get("click_action"), remoteMessage.getData().get("title"), remoteMessage.getData().get("body"));
         } else {
             Log.e(TAG, "==Message data payload null: ");
         }
@@ -61,10 +65,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 break;
             default:
         }
+        Random random = new Random();
+        int requestCode = random.nextInt(999999);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, requestCode, intent,
                 PendingIntent.FLAG_ONE_SHOT);
-
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
@@ -77,6 +82,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0, notificationBuilder.build());
+        notificationManager.notify(NotificationID.getID(), notificationBuilder.build());
     }
 }
