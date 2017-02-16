@@ -1,12 +1,10 @@
-package com.msr.firebasesamples;
+package com.msr.firebasesamples.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.msr.firebasesamples.activities.BaseActivity;
-import com.msr.firebasesamples.activities.DashboardActivity;
-import com.msr.firebasesamples.activities.SignUpActivity;
+import com.msr.firebasesamples.R;
 
 public class MainActivity extends BaseActivity {
 
@@ -20,5 +18,6 @@ public class MainActivity extends BaseActivity {
         } else {
             startActivity(new Intent(this, SignUpActivity.class));
         }
+        finish();
     }
 }
