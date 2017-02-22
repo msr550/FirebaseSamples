@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -79,12 +80,13 @@ public class AddDataActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
         String input = inputET.getText().toString();
-        String brand = brandET.getText().toString();
+        final String brand = brandET.getText().toString();
         String quantity = quantityET.getText().toString();
 
         if (input.trim().equals("") || brand.equals("") || quantity.equals("")) {
             getToast("Please enter some data");
         } else {
+            dialog = getProgressDialog(this);
             Items items = new Items();
             items.setBrand(brand);
             items.setEmail(input);
@@ -93,11 +95,30 @@ public class AddDataActivity extends BaseActivity implements View.OnClickListene
             mDatabase.child("products").child(mFirebaseUser.getUid()).push().setValue(items).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
+                    dismissDialog();
                     if (task.isSuccessful()) {
+                        inputET.setText("");
+                        brandET.setText("");
+                        quantityET.setText("");
                         getToast("Success");
                     } else {
                         getToast(task.getException().getMessage());
                     }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    dismissDialog();
+                }
+            }).addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    dismissDialog();
+                }
+            }).addOnFailureListener(this, new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    dismissDialog();
                 }
             });
         }

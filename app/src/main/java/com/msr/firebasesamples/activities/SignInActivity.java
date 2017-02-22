@@ -36,9 +36,11 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         String email = emailET.getText().toString().trim();
         String password = passwordET.getText().toString().trim();
         if (!email.equals("") && !password.equals("")) {
+            getProgressDialog(this);
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+                    dismissDialog();
                     if (task.isSuccessful()) {
                         startActivity(new Intent(SignInActivity.this, DashboardActivity.class));
                     } else {

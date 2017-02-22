@@ -39,9 +39,11 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                 String email = emailET.getText().toString().trim();
                 String password = passwordET.getText().toString().trim();
                 if (!email.equals("") && !password.equals("")) {
+                    getProgressDialog(this);
                     auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            dismissDialog();
                             if (task.isSuccessful()) {
                                 getToast("Registration Status::" + task.isSuccessful());
                             } else {
