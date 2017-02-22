@@ -116,7 +116,7 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
     }
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);//Menu Resource, Menu
         return true;
     }
@@ -126,15 +126,16 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
         switch (item.getItemId()) {
             case R.id.add_product:
                 startActivity(new Intent(this, AddDataActivity.class));
-                break;
+                return true;
             case R.id.reset_password:
                 startActivity(new Intent(this, ResetPasswordActivity.class));
-                break;
+                return true;
             case R.id.logout:
                 auth.signOut();
-                break;
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return true;
     }
 
     @Override
