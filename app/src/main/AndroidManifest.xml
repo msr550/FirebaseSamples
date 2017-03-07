@@ -3,6 +3,7 @@
     package="com.msr.firebasesamples">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name="android.support.multidex.MultiDexApplication"
@@ -21,6 +22,7 @@
         <activity android:name=".activities.SignInActivity">
             <intent-filter>
                 <action android:name="signin" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -29,22 +31,24 @@
         <activity android:name=".activities.ResetPasswordActivity">
             <intent-filter>
                 <action android:name="rt" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.AddDataActivity"></activity>
+        <activity android:name=".activities.AddDataActivity" />
 
         <service android:name=".fcm.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service android:name=".fcm.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
+        <activity android:name=".activities.ProfileActivity"></activity>
     </application>
 
 </manifest>

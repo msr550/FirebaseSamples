@@ -68,17 +68,6 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
             }
         };
         mDatabase = FirebaseDatabase.getInstance();
-        mDatabase.getReference().addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.i("==Count22::", "==?" + dataSnapshot.getChildrenCount());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.i("==Count22::", "==?databaseError" + databaseError.getMessage());
-            }
-        });
         mDatabase.getReference().child("products").child(auth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -124,6 +113,9 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.profile:
+                startActivity(new Intent(this, ProfileActivity.class));
+                return true;
             case R.id.add_product:
                 startActivity(new Intent(this, AddDataActivity.class));
                 return true;
